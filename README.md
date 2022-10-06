@@ -5,7 +5,7 @@ This Homelab setup is for setting up these services in raspberry pi using docker
 - PiHole
 - Jellyfin
 - Nextcloud
-- Transmission 
+- Qbitorrent
 
 ## Initial setup
 
@@ -39,3 +39,5 @@ The best way to install docker is by using the install script provided in the do
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
+
+## Setup using the script 
