@@ -1,24 +1,16 @@
-version: '3.0'
-
+---
+version: "3.0"
 services:
-  db:
-    image: yobasystems/alpine-mariadb:latest
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-    restart: always
-    volumes:
-      - /YOUR/FILE/PATH:/var/lib/mysql
+  nextcloud:
+    image: linuxserver/nextcloud:latest
+    container_name: nextcloud
     environment:
-      - MYSQL_ROOT_PASSWORD=YOURROOTPASSWORD
-      - MYSQL_PASSWORD=YOURPASSWORD
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-
-  app:
-    image: nextcloud
-    ports:
-      - 8181:80
-    links:
-      - db
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
     volumes:
-      - /YOUR/FILE/PATH:/var/www/html
-    restart: always
+      - /Homelab/Files/AppData/Config/Nextcloud:/config
+      - /home/ganesh/docker/data:/data
+    ports:
+      - 4443:443
+    restart: unless-stopped
