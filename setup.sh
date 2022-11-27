@@ -1,4 +1,5 @@
 ## updating the packages (comment out if using different distro other than debian derivative)
+#!/bin/bash
 
 apt-get update && sudo apt-get upgrade
 
