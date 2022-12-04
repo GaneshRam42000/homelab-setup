@@ -10,8 +10,8 @@ services:
       - TZ=Asia/Kolkata
       - WEBUI_PORT=8080
     volumes:
-      - /path/to/appdata/config:/config
-      - /home/ganesh/docker:/downloads
+      - /Homelab/Files/AppData/Config/Qbitorrent:/config
+      - /home/ganesh/docker/downloads:/downloads
     ports:
       - 8080:8080
       - 6881:6881
