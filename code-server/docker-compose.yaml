@@ -7,16 +7,16 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
-      - PASSWORD=password #optional
-      - HASHED_PASSWORD= #optional
-      - SUDO_PASSWORD=password #optional
-      - SUDO_PASSWORD_HASH= #optional
-      - PROXY_DOMAIN=code-server.my.domain #optional
-      - DEFAULT_WORKSPACE=/home/ganesh/docker/code #optional
+      - TZ=${TZ:-UTC}
+      - PASSWORD=${PWD:password} 
+      - HASHED_PASSWORD= 
+      - SUDO_PASSWORD=${SUDO_PWD:password} 
+      - SUDO_PASSWORD_HASH= 
+      - PROXY_DOMAIN=code-server.my.domain 
+      - DEFAULT_WORKSPACE=/home/ganesh/docker/code 
     volumes:
-      - /Homelab/Files/AppData/Config/code-server:/config
-      - /home/ganesh/docker/code:config/workspace
+      - ${CONFIG_VOLUME:/Homelab/Files/AppData/Config/code-server}:/config
+      - ${WORKSPACE_VOLUME:/home/ganesh/docker/code}:config/workspace
     ports:
-      - 6443:8443
+      - ${PORT:6443}:8443
     restart: unless-stopped
