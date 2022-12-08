@@ -12,10 +12,11 @@ services:
       - /home/ganesh/docker/jellyfin/data/tvshows:/data/tvshows
       - /home/ganesh/docker/jellyfin/data/movies:/data/movies
       - /home/ganesh/docker/jellyfin/data/movies:/data/music
+      - /dev/shm:/config/data/transcoding-temp/transcodes
+      - /opt/vc/lib:/opt/vc/lib   
     ports:
       - 8096:8096
       - 8920:8920 #optional
     devices:
-      - /dev/shm:/config/data/transcoding-temp/transcodes
-      - /opt/vc/lib:/opt/vc/lib   ## OpenMax Libraries
+      - /dev/vchiq:/dev/vchiq 
     restart: unless-stopped
