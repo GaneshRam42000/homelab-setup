@@ -8,15 +8,15 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ:-UTC}
-      - PASSWORD=${PWD:password} 
+      - PASSWORD=${PWD:-password} 
       - HASHED_PASSWORD= 
-      - SUDO_PASSWORD=${SUDO_PWD:password} 
+      - SUDO_PASSWORD=${SUDO_PWD:-password} 
       - SUDO_PASSWORD_HASH= 
       - PROXY_DOMAIN=code-server.my.domain 
       - DEFAULT_WORKSPACE=/home/ganesh/docker/code 
     volumes:
-      - ${CONFIG_VOLUME:/Homelab/Files/AppData/Config/code-server}:/config
-      - ${WORKSPACE_VOLUME:/home/ganesh/docker/code}:config/workspace
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/code-server}:/config
+      - ${WORKSPACE_VOLUME-/home/ganesh/docker/code}:/config/workspace
     ports:
-      - ${PORT:6443}:8443
+      - ${PORT:-6443}:8443
     restart: unless-stopped
