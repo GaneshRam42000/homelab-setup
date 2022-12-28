@@ -13,10 +13,9 @@ services:
       - SUDO_PASSWORD=${SUDO_PWD:-password} 
       - SUDO_PASSWORD_HASH= 
       - PROXY_DOMAIN=code-server.my.domain 
-      - DEFAULT_WORKSPACE=/home/ganesh/docker/code 
     volumes:
       - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/code-server}:/config
-      - ${WORKSPACE_VOLUME-/home/ganesh/docker/code}:/config/workspace
+     # - ${WORKSPACE_VOLUME-/home/ganesh/docker/code}:/config/workspace
     ports:
       - ${PORT:-6443}:8443
     restart: unless-stopped

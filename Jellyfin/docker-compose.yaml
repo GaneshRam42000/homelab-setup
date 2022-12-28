@@ -14,9 +14,9 @@ services:
       - /home/ganesh/docker/jellyfin/data/movies:/data/music
       - /dev/shm:/config/data/transcoding-temp/transcodes
       - /opt/vc/lib:/opt/vc/lib   
+      - /etc/ld.so.conf.d/00-vmcs.conf:/etc/ld.so.conf.d/00-vmcs.conf ## Path needed for libraries
     ports:
       - 8096:8096
-      - 8920:8920 #optional
     devices:
       - /dev/vchiq:/dev/vchiq 
     restart: unless-stopped

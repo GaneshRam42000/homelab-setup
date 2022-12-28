@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - /Homelab/Files/AppData/Config/Radarr:/config
+      - /home/ganesh/docker/jellyfin/data/movies/Movies:/movies #optional
+      - /home/ganesh/docker/downloads:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
