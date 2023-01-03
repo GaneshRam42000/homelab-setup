@@ -16,7 +16,7 @@ services:
       - /opt/vc/lib:/opt/vc/lib   
       - /etc/ld.so.conf.d/00-vmcs.conf:/etc/ld.so.conf.d/00-vmcs.conf ## Path needed for libraries
     ports:
-      - 8096:8096
+      - 9000:8096
     devices:
       - /dev/vchiq:/dev/vchiq 
     restart: unless-stopped

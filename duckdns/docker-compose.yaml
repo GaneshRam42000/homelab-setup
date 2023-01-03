@@ -1,0 +1,16 @@
+---
+version: "2.1"
+services:
+  duckdns:
+    image: linuxserver/duckdns:latest
+    container_name: duckdns
+    environment:
+      - PUID=1000 #optional
+      - PGID=1000 #optional
+      - TZ=Asia/Kolkata
+      - SUBDOMAINS=jellyfingram
+      - TOKEN=896a0ef8-b5ba-4612-84c8-ff8adeb563cf
+      - LOG_FILE=false #optional
+    volumes:
+      - /Homelab/Files/AppData/Config/duckdns:/config #optional
+    restart: unless-stopped
