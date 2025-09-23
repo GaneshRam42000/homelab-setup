@@ -7,11 +7,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Kolkata
+      - TZ=${TZ:-UTC}
     volumes:
-      - /Homelab/Files/AppData/Config/Radarr:/config
-      - /home/ganesh/docker/jellyfin/data/movies/Movies:/movies #optional
-      - /home/ganesh/docker/downloads:/downloads #optional
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Radarr}:/config
+      - ${MEDIA_FOLDER:-/home/ganesh/docker/jellyfin/data/movies/Movies}:/movies #optional
+      - ${DOWNLOAD_LOCATION:-/home/ganesh/docker/downloads}:/downloads #optional
     ports:
-      - 7878:7878
+      - ${PORT:-7878}:7878
     restart: unless-stopped

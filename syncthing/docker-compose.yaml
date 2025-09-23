@@ -7,10 +7,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Kolkata
+      - TZ=${TZ:-UTC}
     volumes:
-      - /Homelab/Files/AppData/Config/syncthing:/config
-      - /home/ganesh/docker/Backup:/data1
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/syncthing}:/config
+      - ${SYNC_LOCATION:-/home/ganesh/docker/sync}:/sync
     ports:
       - 8384:8384
       - 22000:22000/tcp

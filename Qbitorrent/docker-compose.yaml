@@ -7,11 +7,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Kolkata
+      - TZ=${TZ:-UTC}
       - WEBUI_PORT=8080
     volumes:
-      - /Homelab/Files/AppData/Config/Qbitorrent:/config
-      - /home/ganesh/docker/downloads:/downloads
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Qbitorrent}:/config
+      - ${DOWNLOAD_LOCATION:-/home/ganesh/docker/downloads}:/downloads
     ports:
       - 8080:8080
       - 6881:6881
