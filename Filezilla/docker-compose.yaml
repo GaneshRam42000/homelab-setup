@@ -1,0 +1,17 @@
+---
+services:
+  filezilla:
+    image: lscr.io/linuxserver/filezilla:latest
+    container_name: filezilla
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Filezilla}:/config
+      - ${FILE_VOLUME:-/home/ganesh/docker}:/docker
+    ports:
+      - ${HTTP_PORT:-3000}:3000
+      - ${HTTPS_PORT:-3001}:3001
+    shm_size: "1gb"
+    restart: unless-stopped
