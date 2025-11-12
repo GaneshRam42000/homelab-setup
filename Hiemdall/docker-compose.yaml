@@ -11,5 +11,5 @@ services:
     volumes:
       - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Hiemdall}:/config
     ports:
-      - ${PORT:443}:443
+      - ${PORT:-443}:443
     restart: unless-stopped
