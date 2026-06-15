@@ -1,6 +1,6 @@
-<mxfile host="Electron">
-  <diagram name="Page-1" id="01w7Kbuebp0_zFNIgO4w">
-    <mxGraphModel dx="936" dy="571" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+<mxfile host="Electron" pages="2">
+  <diagram name="Main architecture" id="01w7Kbuebp0_zFNIgO4w">
+    <mxGraphModel dx="2054" dy="1204" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -24,6 +24,35 @@
         </mxCell>
         <mxCell id="mB3i9f1obal06LL6OYMB-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Compose&amp;nbsp;&lt;div&gt;Reposotory&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="260" y="575" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ONtkQQyMcomANIXt_fdG" name="Rust-docker interface">
+    <mxGraphModel dx="2054" dy="1204" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zEwHSK8PLIPaYF9Kgi7d-6" edge="1" parent="1" source="zEwHSK8PLIPaYF9Kgi7d-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=openThin;startFill=0;" target="zEwHSK8PLIPaYF9Kgi7d-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zEwHSK8PLIPaYF9Kgi7d-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Docker Runtime" vertex="1">
+          <mxGeometry height="60" width="420" x="204" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="zEwHSK8PLIPaYF9Kgi7d-2" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Rust Docker Interface" vertex="1">
+          <mxGeometry height="150" width="316" x="256" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="zEwHSK8PLIPaYF9Kgi7d-3" parent="zEwHSK8PLIPaYF9Kgi7d-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="List Containers" vertex="1">
+          <mxGeometry height="30" width="316" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zEwHSK8PLIPaYF9Kgi7d-4" parent="zEwHSK8PLIPaYF9Kgi7d-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Start a docker compose file" vertex="1">
+          <mxGeometry height="30" width="316" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zEwHSK8PLIPaYF9Kgi7d-5" parent="zEwHSK8PLIPaYF9Kgi7d-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Stop a docker compose file" vertex="1">
+          <mxGeometry height="30" width="316" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="zEwHSK8PLIPaYF9Kgi7d-7" parent="zEwHSK8PLIPaYF9Kgi7d-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Delete unused containers and volumes" vertex="1">
+          <mxGeometry height="30" width="316" y="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
