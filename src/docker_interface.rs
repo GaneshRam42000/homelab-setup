@@ -19,11 +19,11 @@ impl ComposeStart {
         Command::new("docker")
             .args([
                 "compose",
-                "up",
                 "-f",
                 &self.compose_file_path,
                 "--env-file",
                 &self.compose_env_path,
+                "up"
             ])
             .status()?;
         Ok(())
@@ -37,7 +37,7 @@ pub struct ComposeStop {
 impl ComposeStop {
     pub fn run(&self) -> std::io::Result<()> {
         Command::new("docker")
-            .args(["compose", "stop", "-f", &self.compose_file_path])
+            .args(["compose", "-f", &self.compose_file_path, "stop"])
             .status()?;
         Ok(())
     }
@@ -50,7 +50,7 @@ pub struct ComposeRestart {
 impl ComposeRestart {
     pub fn run(&self) -> std::io::Result<()> {
         Command::new("docker")
-            .args(["compose", "restart", "-f", &self.compose_file_path])
+            .args(["compose", "-f", &self.compose_file_path, "restart"])
             .status()?;
         Ok(())
     }
@@ -63,7 +63,7 @@ pub struct ComposePrune {
 impl ComposePrune {
     pub fn run(self) -> std::io::Result<()> {
         Command::new("docker")
-            .args(["container", "prune", "-f", &self.compose_file_path])
+            .args(["compose", "-f", &self.compose_file_path, "down"])
             .status()?;
         Ok(())
     }

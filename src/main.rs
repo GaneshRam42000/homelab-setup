@@ -1,8 +1,10 @@
 mod docker_interface;
-use docker_interface::List;
+mod repo_management;
+use std::path::PathBuf;
 
+use docker_interface::List;
+use repo_management::ComposeRepository;
 fn main() -> std::io::Result<()> {
-    let command = List;
-    command.run()?;
+    let repo = ComposeRepository::new(PathBuf::from(""));
     Ok(())
 }

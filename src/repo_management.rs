@@ -1,16 +1,39 @@
-use std::fs::{self, OpenOptions};
-use std::io::{self, Write};
+use std::fs;
+use std::io;
+use std::path::PathBuf;
 
-fn read_or_create_repo_config(path: &str, default_content: &str) -> io::Result<String> {
-    match fs::read_to_string(path) {
-        Ok(content) => Ok(content),
-        Err(err) if err.kind() == io::ErrorKind::NotFound => {
-            let mut file = OpenOptions::new().write(true).create_new(true).open(path)?;
+pub struct ComposeProject{
+    pub name: String,
+    pub path: PathBuf,
+    pub file_path: PathBuf,
+    pub env_path: PathBuf,
+}
 
-            file.write_all(default_content.as_bytes())?
+pub struct ComposeRepository{
+    pub path: PathBuf,
+}
 
-            Ok(default_content.to_string())
+impl ComposeRepository {
+    pub fn new(path: PathBuf) -> Self{
+        Self { path }
+    }
+    pub fn projects(&self) -> io::Result<Vec<ComposeProject>> {
+        let mut projects = Vec::new();
+        for entry in fs::read_dir(&self.path)? {
+            let entry = entry?;
+            let project_path = entry.path();
+            if !project_path.is_dir(){
+                continue;
+            }
+            let compose_file = project_path.join("docker-compose.yaml");
+            let env_file = project_path.join(".env");
+            if !compose_file.is_file() && !env_file.is_file() {
+                continue;
+            }
+            let name = entry.file_name().to_string_lossy().into_owned();
+            projects.push(ComposeProject { name, path: (project_path), file_path: (compose_file), env_path: (env_file) });
         }
-        Err(err) => Err(err),
+
+        Ok(projects)
     }
 }
