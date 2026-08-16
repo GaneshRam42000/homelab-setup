@@ -1,15 +1,57 @@
 ---
 services:
   nextcloud:
-    image: linuxserver/nextcloud:latest
+    image: nextcloud:latest
     container_name: nextcloud
+    depends_on:
+      - mariadb
+      - redis
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=${TZ:-UTC}
+      - MYSQL_HOST=mariadb
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - REDIS_HOST=redis
     volumes:
-      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Nextcloud}:/config
-      - ${NEXTCLOUD_DATA_DIR:-/home/ganesh/docker/data}:/data
+      - ${NEXTCLOUD_CONFIG:-/Homelab/Files/AppData/Config/Nextcloud}:/var/www/html
+      - ${NEXTCLOUD_DATA:-/home/ganesh/docker/data}:/var/www/html/data
     ports:
-      - ${PORT:-4443}:443
+      - ${PORT:-4443}:80
+    networks:
+      - nextcloud
     restart: unless-stopped
+
+  mariadb:
+    image: mariadb:11
+    container_name: nextcloud-mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ${MARIADB_DATA:-/Homelab/Files/AppData/Config/Nextcloud/mariadb}:/var/lib/mysql
+    networks:
+      - nextcloud
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    networks:
+      - nextcloud
+    restart: unless-stopped
+
+  collabora:
+    image: collabora/code:latest
+    container_name: collabora
+    environment:
+      - username=admin
+      - password=${COLLABORA_PASSWORD}
+      - extra_params=--o:ssl.enable=false --o:ssl.termination=true
+    networks:
+      - nextcloud
+    restart: unless-stopped
+
+networks:
+  nextcloud:
