@@ -13,8 +13,8 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - REDIS_HOST=redis
     volumes:
-      - ${NEXTCLOUD_CONFIG:-/Homelab/Files/AppData/Config/Nextcloud}:/var/www/html
-      - ${NEXTCLOUD_DATA:-/home/ganesh/docker/data}:/var/www/html/data
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Nextcloud}:/var/www/html
+      - ${NEXTCLOUD_DATA_DIR:-/home/ganesh/docker/data}:/var/www/html/data
     ports:
       - ${PORT:-4443}:80
     networks:
