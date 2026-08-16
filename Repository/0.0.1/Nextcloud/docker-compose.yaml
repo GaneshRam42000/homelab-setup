@@ -1,5 +1,4 @@
 ---
-version: "3.0"
 services:
   nextcloud:
     image: linuxserver/nextcloud:latest
@@ -7,10 +6,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Kolkata
+      - TZ=${TZ:-UTC}
     volumes:
-      - /Homelab/Files/AppData/Config/Nextcloud:/config
-      - /home/ganesh/docker/data:/data
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Nextcloud}:/config
+      - ${NEXTCLOUD_DATA_DIR:-/home/ganesh/docker/data}:/data
     ports:
-      - 4443:443
+      - ${PORT:-4443}:443
     restart: unless-stopped
