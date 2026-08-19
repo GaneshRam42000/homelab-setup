@@ -42,16 +42,16 @@ services:
       - nextcloud
     restart: unless-stopped
 
-  collabora:
-    image: collabora/code:latest
-    container_name: collabora
-    environment:
-      - username=admin
-      - password=${COLLABORA_PASSWORD}
-      - extra_params=--o:ssl.enable=false --o:ssl.termination=true
-    networks:
-      - nextcloud
-    restart: unless-stopped
+  # collabora:
+  #   image: collabora/code:latest
+  #   container_name: collabora
+  #   environment:
+  #     - username=admin
+  #     - password=${COLLABORA_PASSWORD}
+  #     - extra_params=--o:ssl.enable=false --o:ssl.termination=true
+  #   networks:
+  #     - nextcloud
+  #   restart: unless-stopped
 
 networks:
   nextcloud:
