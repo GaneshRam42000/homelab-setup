@@ -9,9 +9,9 @@ services:
       - PGID=1000
       - TZ=${TZ:-UTC}
     volumes:
-      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Radarr}:/config
-      - ${MEDIA_FOLDER:-/home/ganesh/docker/jellyfin/data/movies/Movies}:/movies #optional
-      - ${DOWNLOAD_LOCATION:-/home/ganesh/docker/downloads}:/downloads #optional
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Radarr}:/config:z
+      - ${MEDIA_FOLDER:-/home/ganesh/docker/jellyfin/data/movies/Movies}:/movies:Z #optional
+      - ${DOWNLOAD_LOCATION:-/home/ganesh/docker/downloads}:/downloads:Z #optional
     ports:
       - ${PORT:-7878}:7878
     restart: unless-stopped

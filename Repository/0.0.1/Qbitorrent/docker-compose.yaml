@@ -10,8 +10,8 @@ services:
       - TZ=${TZ:-UTC}
       - WEBUI_PORT=8080
     volumes:
-      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Qbitorrent}:/config
-      - ${DOWNLOAD_LOCATION:-/home/ganesh/docker/downloads}:/downloads
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Qbitorrent}:/config:z
+      - ${DOWNLOAD_LOCATION:-/home/ganesh/docker/downloads}:/downloads:Z
     ports:
       - 8080:8080
       - 6881:6881

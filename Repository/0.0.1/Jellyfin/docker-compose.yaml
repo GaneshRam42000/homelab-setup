@@ -9,7 +9,7 @@ services:
       - TZ=${TZ:-Asia/Kolkata}
       - DOCKER_MODS=linuxserver/mods:jellyfin-opencl-intel
     volumes:
-      - ${CONFIG_DIR:-/Homelab/Files/AppData/Config/jellyfin}:/config
+      - ${CONFIG_DIR:-/Homelab/Files/AppData/Config/jellyfin}:/config:z
       - ${MEDIA_FOLDER:-/home/ganesh/docker/jellyfin/data/}:/data/Media
       - /dev/shm:/config/data/transcoding-temp/transcodes
       - /opt/vc/lib:/opt/vc/lib

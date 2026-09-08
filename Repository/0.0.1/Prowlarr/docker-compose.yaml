@@ -8,7 +8,7 @@ services:
       - PGID=1000
       - TZ=${TZ:-UTC}
     volumes:
-      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Prowlarr}:/config
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Prowlarr}:/config:z
     ports:
       - 9696:9696
     restart: unless-stopped

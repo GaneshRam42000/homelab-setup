@@ -13,8 +13,8 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - REDIS_HOST=redis
     volumes:
-      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Nextcloud}:/var/www/html
-      - ${NEXTCLOUD_DATA_DIR:-/home/ganesh/docker/data}:/var/www/html/data
+      - ${CONFIG_VOLUME:-/Homelab/Files/AppData/Config/Nextcloud}:/var/www/html:z
+      - ${NEXTCLOUD_DATA_DIR:-/home/ganesh/docker/data}:/var/www/html/data:z
     ports:
       - ${PORT:-4443}:80
     networks:
@@ -30,7 +30,7 @@ services:
       - MYSQL_USER=nextcloud
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-      - ${MARIADB_DATA:-/Homelab/Files/AppData/Config/Nextcloud/mariadb}:/var/lib/mysql
+      - ${MARIADB_DATA:-/Homelab/Files/AppData/Config/Nextcloud/mariadb}:/var/lib/mysql:z
     networks:
       - nextcloud
     restart: unless-stopped
