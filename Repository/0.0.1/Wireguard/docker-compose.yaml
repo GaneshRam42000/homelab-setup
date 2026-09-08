@@ -19,7 +19,7 @@ services:
       - PERSISTENTKEEPALIVE_PEERS= #optional
       - LOG_CONFS=true #optional
     volumes:
-      - ${CONFIG_DIR:-/Homelab/Files/AppData/Config/Wireguard}:/config
+      - ${CONFIG_DIR:-/Homelab/Files/AppData/Config/Wireguard}:/config:z
       - /lib/modules:/lib/modules #optional
     ports:
       - 51820:51820/udp
