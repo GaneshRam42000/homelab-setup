@@ -9,8 +9,8 @@ services:
       - TZ=${TZ:-Asia/Kolkata}
       - DOCKER_MODS=linuxserver/mods:jellyfin-opencl-intel
     volumes:
-      - ${CONFIG_DIR:-/Homelab/Files/AppData/Config/jellyfin}:/config:z
-      - ${MEDIA_FOLDER:-/home/ganesh/docker/jellyfin/data/}:/data/Media
+      - ${CONFIG_DIR}:/config:z
+      - ${MEDIA_FOLDER}:/data/Media:z
       - /dev/shm:/config/data/transcoding-temp/transcodes
       - /opt/vc/lib:/opt/vc/lib
       - /etc/ld.so.conf.d/00-vmcs.conf:/etc/ld.so.conf.d/00-vmcs.conf ## Path needed for libraries
