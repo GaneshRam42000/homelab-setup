@@ -7,6 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ:-UTC}
+    userns_mode: keep-id
     volumes:
       - ${SONARR_CONFIG_VOLUME}:/config:z
       - ${SHOWS_MEDIA_FOLDER}:/tv:Z #optional
@@ -22,6 +23,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ:-UTC}
+    userns_mode: keep-id
     volumes:
       - ${PROWLARR_CONFIG_VOLUME}:/config:z
     ports:
@@ -35,6 +37,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ:-UTC}
+    userns_mode: keep-id
     volumes:
       - ${RADARR_CONFIG_VOLUME}:/config:z
       - ${MOVIE_MEDIA_FOLDER}:/movies:Z #optional
