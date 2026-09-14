@@ -2,6 +2,8 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    depends_on:
+      - unbound
     ports:
       # DNS Ports
       - 53:53/tcp
@@ -24,7 +26,7 @@ services:
     # Volumes store your data between container upgrades
     volumes:
       # For persisting Pi-hole's databases and common configuration file
-      - /Homelab/Files/AppData/Config/PiHole:/etc/pihole:rw
+      - ${CONFIG_DIR}:/etc/pihole:Z
       # Uncomment the below if you have custom dnsmasq config files that you want to persist. Not needed for most starting fresh with Pi-hole v6. If you're upgrading from v5 you and have used this directory before, you should keep it enabled for the first v6 container start to allow for a complete migration. It can be removed afterwards. Needs environment variable FTLCONF_misc_etc_dnsmasq_d: 'true'
       #- './etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
@@ -36,3 +38,29 @@ services:
       # Optional, if Pi-hole should get some more processing time
       # - SYS_NICE
     restart: unless-stopped
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    networks:
+      pihole_dns_network:
+        ipv4_address: 172.21.200.2
+  unbound:
+    image: mvance/unbound:latest
+    container_name: unbound
+    hostname: unbound.local
+    restart: unless-stopped
+    ports:
+      - 5335:53/tcp
+      - 5335:53/udp
+    networks:
+      pihole_dns_network:
+        ipv4_address: 172.21.200.3
+networks:
+ pihole_dns_network:
+  name: "pihole_dns_network"
+  ipam:
+    driver: default
+    config:
+      - subnet: 172.21.200/24
+        gateway: 172.21.200.1
+        ip_range: 172.21.200.1/24
