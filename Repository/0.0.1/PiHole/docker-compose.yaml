@@ -55,6 +55,8 @@ services:
     networks:
       pihole_dns_network:
         ipv4_address: 172.21.200.3
+    volumes:
+      - ~/Homelab/Files/AppData/Config/unbound:/opt/unbound/etc/unbound/:z
 networks:
  pihole_dns_network:
   name: "pihole_dns_network"
