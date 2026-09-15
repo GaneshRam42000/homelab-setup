@@ -6,8 +6,8 @@ services:
     #  - unbound
     ports:
       # DNS Ports
-      - 53:53/tcp
-      - 53:53/udp
+      - "192.168.0.100:53:53/tcp"
+      - "192.168.0.100:53:53/udp"
       # Default HTTP Port
       - ${PIHOLE_WEBPORT:-80}:80/tcp
       # Default HTTPs Port. FTL will generate a self-signed certificate
@@ -21,7 +21,7 @@ services:
       TZ: ${TZ:-UTC}
       # Set a password to access the web interface. Not setting one will result in a random password being assigned
       FTLCONF_webserver_api_password: server@2025
-      FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9;172.21.200.3#53'
+      #FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9;172.21.200.3#53'
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: all
     # Volumes store your data between container upgrades
@@ -39,8 +39,8 @@ services:
       # Optional, if Pi-hole should get some more processing time
       # - SYS_NICE
     restart: unless-stopped
-    #dns:
-    #  - 127.0.0.1
+    dns:
+      - 172.21.200.3
     #  - 1.1.1.1
     networks:
       pihole_dns_network:
@@ -51,8 +51,8 @@ services:
     hostname: unbound.local
     restart: unless-stopped
     ports:
-      - 5335:53/tcp
-      - 5335:53/udp
+      #- 5335:53/tcp
+      #- 5335:53/udp
     networks:
       pihole_dns_network:
         ipv4_address: 172.21.200.3
