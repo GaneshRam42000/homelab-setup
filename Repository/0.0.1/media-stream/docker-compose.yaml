@@ -62,3 +62,17 @@ services:
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ${BAZARR_CONFIG_VOLUME}:/config:z
+      - ${MOVIE_MEDIA_FOLDER}:/movies:z #optional
+      - ${SHOWS_MEDIA_FOLDER}:/tv:z #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped
