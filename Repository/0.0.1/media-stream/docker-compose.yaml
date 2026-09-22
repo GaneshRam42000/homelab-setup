@@ -10,8 +10,8 @@ services:
     userns_mode: keep-id
     volumes:
       - ${SONARR_CONFIG_VOLUME}:/config:z
-      - ${SHOWS_MEDIA_FOLDER}:/tv:Z #optional
-      - ${DOWNLOAD_LOCATION}:/downloads:Z #optional
+      - ${SHOWS_MEDIA_FOLDER}:/tv:z #optional
+      - ${DOWNLOAD_LOCATION}:/downloads:z #optional
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -40,8 +40,8 @@ services:
     userns_mode: keep-id
     volumes:
       - ${RADARR_CONFIG_VOLUME}:/config:z
-      - ${MOVIE_MEDIA_FOLDER}:/movies:Z #optional
-      - ${DOWNLOAD_LOCATION}:/downloads:Z #optional
+      - ${MOVIE_MEDIA_FOLDER}:/movies:z #optional
+      - ${DOWNLOAD_LOCATION}:/downloads:z #optional
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -56,7 +56,7 @@ services:
       - WEBUI_PORT=8080
     volumes:
       - ${TORRENT_CONFIG_VOLUME}:/config:z
-      - ${DOWNLOAD_LOCATION}:/downloads:Z
+      - ${DOWNLOAD_LOCATION}:/downloads:z
     ports:
       - 8080:8080
       - 6881:6881
