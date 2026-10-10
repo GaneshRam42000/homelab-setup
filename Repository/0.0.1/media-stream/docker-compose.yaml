@@ -4,8 +4,8 @@ services:
     image: linuxserver/sonarr:latest
     container_name: sonarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=${TZ:-UTC}
     userns_mode: keep-id
     volumes:
@@ -20,8 +20,8 @@ services:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=${TZ:-UTC}
     userns_mode: keep-id
     volumes:
@@ -34,8 +34,8 @@ services:
     image: linuxserver/radarr:latest
     container_name: radarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=${TZ:-UTC}
     userns_mode: keep-id
     volumes:
@@ -50,8 +50,8 @@ services:
     image: linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=${TZ:-UTC}
       - WEBUI_PORT=8080
     volumes:
@@ -66,8 +66,8 @@ services:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=${TZ:-UTC}
     volumes:
       - ${BAZARR_CONFIG_VOLUME}:/config:z
