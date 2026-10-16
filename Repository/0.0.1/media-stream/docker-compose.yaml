@@ -54,6 +54,7 @@ services:
       - PGID=0
       - TZ=${TZ:-UTC}
       - WEBUI_PORT=8080
+    userns_mode: keep-id
     volumes:
       - ${TORRENT_CONFIG_VOLUME}:/config:z
       - ${DOWNLOAD_LOCATION}:/downloads:z
@@ -69,6 +70,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=${TZ:-UTC}
+    userns_mode: keep-id
     volumes:
       - ${BAZARR_CONFIG_VOLUME}:/config:z
       - ${MOVIE_MEDIA_FOLDER}:/movies:z #optional
@@ -78,9 +80,10 @@ services:
     restart: unless-stopped
 
   jellyseerr:
-    image: ghcr.io/fallenbagel/jellyseerr:latest
+    image: ghcr.io/seerr-team/seerr:latest
     init: true
-    container_name: jellyseerr
+    container_name: seerr
+    userns_mode: keep-id
     environment:
       - LOG_LEVEL=debug
       - TZ=${TZ:-UTC}
